@@ -12,10 +12,17 @@
     border: 1px solid white;
 }
 
-.big_image{
-    width:100%;
+#start, #status, #restart{
+    font-size: 22px;
 }
 
-#start, #status{
-    font-size: 22px;
+#footer{
+    color: darkblue;
+    background-color: aliceblue;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    line-height: 3;
+    text-align: center;
+    font-size: 15px;
 }
