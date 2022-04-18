@@ -28,10 +28,21 @@ function setup(){
   canvas.parent("canvas");
   video=createCapture(VIDEO);
   video.size(700,600);
-  video.hide();
   
   poseNet=ml5.poseNet(video, modelLoaded);
-  poseNet.on('pose');
+  poseNet.on('pose', gotPoses);
+}
+
+rwX="";
+rwY="";
+rwS="";
+function gotPoses(results){
+  if(results.length>0){
+		console.log(results);	
+		rwX=results[0].pose.rightWrist.x;
+		rwY=results[0].pose.rightWrist.y;
+    rwS=results[0].pose.score;
+	}
 }
 
 function modelLoaded(){
@@ -41,6 +52,12 @@ function modelLoaded(){
 function draw(){
 image(video, 0, 0, 700, 600);
  background(0); 
+
+ if (rwS>0.02) {
+   fill("#ff0044");
+   stroke("#ff0044");
+   circle(rwX, rwY, rwS);
+ }
 
  fill("black");
  stroke("black");
